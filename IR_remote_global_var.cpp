@@ -1,7 +1,9 @@
 #include <Arduino.h>
 #include "IR_remote_global_var.h"
 
+
 const int CommandsTable_size = 24;
+
 
 Command commands[CommandsTable_size] = {
   {0x0,  0xFF00EF00, 0},
@@ -29,3 +31,4 @@ Command commands[CommandsTable_size] = {
   {0x16, 0xE916EF00, 0},
   {0x17, 0xE817EF00, 0},
 };
+

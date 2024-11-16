@@ -1,11 +1,13 @@
 #ifndef IR_REMOTE_GLOBAL_VAR_H
 #define IR_REMOTE_GLOBAL_VAR_H
-#include <IRremote.hpp>
 
-#define RemoteAdress    0xEF00
+
+#define RemoteAdress    0xEF00    //Adress of the Remote
+#define IR_RECEIVE_PIN  7         // Pin where the IR is Connected
 
 //######################### IR COMMANDS #############################
 extern const int CommandsTable_size;
+
 
 struct Command {
   uint8_t IRcommand;
@@ -14,5 +16,8 @@ struct Command {
 };
 
 extern Command commands[];
+
+
+
 
 #endif
