@@ -19,7 +19,7 @@ void loop_fun(int pin){
     Serial.println(IrReceiver.decodedIRData.address, HEX);  // Wyświetla adres IR w HEX
     
     Serial.print("Command: ");
-    Serial.println(IrReceiver.decodedIRData.command, HEX);  // Wyświetla komendę IR w HEX
+    Serial.println(IrReceiver.decodedIRData.command, DEC);  // Wyświetla komendę IR w HEX
     
     // Krótkie podsumowanie wyniku IR
     Serial.print("IR Short Result: ");
@@ -27,5 +27,18 @@ void loop_fun(int pin){
     Serial.println();
     
     IrReceiver.resume();  // Przygotowanie do odbioru następnego sygnału
+
+    if (IrReceiver.decodedIRData.address == RemoteAdress) {
+      for (int i = 0; i < CommandsTable_size; i++){
+        if (commands[i].IRcommand == IrReceiver.decodedIRData.command){
+          Serial.println(commands[i].ProgramCommand);
+        }
+      }
+    }
+    
   }
+
+  
+  
+
 }

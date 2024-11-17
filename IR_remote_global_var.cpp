@@ -5,6 +5,8 @@
 const int CommandsTable_size = 24;
 
 
+
+
 Command commands[CommandsTable_size] = {
   {0x0,  0xFF00EF00, 1},
   {0x1, 0xFE01EF00, 2},
