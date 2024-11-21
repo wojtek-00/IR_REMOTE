@@ -7,5 +7,11 @@ void setup() {
 }
 
 void loop() {
-  loop_fun(IR_RECEIVE_PIN);
+  int remodeCommand;
+  remodeCommand = loop_fun(IR_RECEIVE_PIN);
+  if (remodeCommand != 0) {
+    Serial.print("Here: ");
+    Serial.println(remodeCommand);
+    Serial.println();
+  }
 }
