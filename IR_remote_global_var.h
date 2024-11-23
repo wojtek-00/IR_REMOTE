@@ -4,7 +4,8 @@
 
 #define RemoteAdress    0xEF00    //Adress of the Remote
 #define IR_RECEIVE_PIN  7         // Pin where the IR is Connected
-#define none            100       // value of dimm
+#define none            100       // value of none
+#define slave_LED       8         // slave adress
 
 //######################### IR COMMANDS #############################
 extern const int CommandsTable_size;

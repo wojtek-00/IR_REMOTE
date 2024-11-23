@@ -16,7 +16,7 @@ int loop_fun(int pin){
     if (IrReceiver.decodedIRData.address == RemoteAdress) {
       for (int i = 0; i < CommandsTable_size; i++){
         if (commands[i].IRcommand == IrReceiver.decodedIRData.command){
-          if ((commands[i].ProgramCommand == 1) || (commands[i].ProgramCommand == 2)) {
+          if ((commands[i].ProgramCommand == 35) || (commands[i].ProgramCommand == 36)) {
             return (commands[i].ProgramCommand);
           } else if (IrReceiver.decodedIRData.decodedRawData != 0) {
             return (commands[i].ProgramCommand);
