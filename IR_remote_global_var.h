@@ -39,5 +39,7 @@ extern int LDRValue;
 extern int lvlYellowLight;
 extern int lvlWhiteLight;
 
+extern bool turnOffMotion;
+
 
 #endif

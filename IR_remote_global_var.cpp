@@ -42,12 +42,14 @@ int motionDetected;
 
 unsigned long lastTriggerSignalTime;
 
-const unsigned long delayInterval = 300000;     // 5 min
+const unsigned long delayInterval = 30000;     // 5 min
 
-const unsigned long delayOffInterval = 600000;  // 10 min
+const unsigned long delayOffInterval = 60000;  // 10 min
 //######################### PhotoRes COMMANDS #############################
 
 int LDRValue;
 
-extern int lvlWhiteLight = 350;
-extern int lvlYellowLight = 100;
+int lvlWhiteLight = 350;
+int lvlYellowLight = 100;
+
+bool turnOffMotion = false;

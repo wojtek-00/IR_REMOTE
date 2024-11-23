@@ -39,6 +39,7 @@ void loop() {
         Wire.beginTransmission(slave_LED);
         Wire.write(55);   // White Light
         Wire.endTransmission();
+        turnOffMotion = true;
         lastTriggerSignalTime = millis();
       }
     } else if (LDRValue < lvlYellowLight) {
@@ -47,17 +48,23 @@ void loop() {
         Wire.beginTransmission(slave_LED);
         Wire.write(56);   // Yellow Light
         Wire.endTransmission();
+        turnOffMotion = true;
         lastTriggerSignalTime = millis();
+      }
+    }
+    if (turnOffMotion == true) {
+      //Serial.println("motion true");
+
+      if (millis() - lastTriggerSignalTime >= delayOffInterval) {
+        Serial.println("Number 57");
+        Wire.beginTransmission(slave_LED);
+        Wire.write(57);     // Turn off
+        Wire.endTransmission();
+        turnOffMotion = false;
       }
     }
   }
 
-  if (millis() - lastTriggerSignalTime >= delayOffInterval) {
-    Serial.println("Number 55");
-    Wire.beginTransmission(slave_LED);
-    Wire.write(57);     // Turn off
-    Wire.endTransmission();
-
-  }
+  
 
 }
