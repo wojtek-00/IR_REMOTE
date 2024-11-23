@@ -20,6 +20,24 @@ struct Command {
 extern Command commands[];
 
 
+//######################### PIR COMMANDS #############################
+#define PIR_PIN 2
+
+extern unsigned long lastTriggerSignalTime;
+
+extern const unsigned long delayInterval;
+
+extern const unsigned long delayOffInterval;
+
+extern int motionDetected;
+
+//######################### PhotoRes COMMANDS #############################
+#define LDR_PIN A3
+
+extern int LDRValue;
+
+extern int lvlYellowLight;
+extern int lvlWhiteLight;
 
 
 #endif

@@ -34,3 +34,20 @@ Command commands[CommandsTable_size] = {
   {0x17, 0xE817EF00, 21},
 };
 
+
+
+//######################### PIR COMMANDS #############################
+
+int motionDetected;
+
+unsigned long lastTriggerSignalTime;
+
+const unsigned long delayInterval = 300000;     // 5 min
+
+const unsigned long delayOffInterval = 600000;  // 10 min
+//######################### PhotoRes COMMANDS #############################
+
+int LDRValue;
+
+extern int lvlWhiteLight = 350;
+extern int lvlYellowLight = 100;
