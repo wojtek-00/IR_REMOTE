@@ -10,7 +10,7 @@ void setup() {
   Serial.begin(9600);
   pinMode(PIR_PIN, INPUT);
   pinMode(LDR_PIN, INPUT);
-  lastTriggerSignalTime = 300000;
+  lastTriggerSignalTime = 3000;
 
 }
 
@@ -18,7 +18,7 @@ void loop() {
   int remoteCommand;
   remoteCommand = loop_fun(IR_RECEIVE_PIN);
   if (remoteCommand != 0) {
-    Serial.print("Here: ");
+    Serial.print("Command: ");
     Serial.println(remoteCommand);
     Serial.println();
     Wire.beginTransmission(slave_LED);
@@ -26,27 +26,30 @@ void loop() {
     Wire.endTransmission();
   }
  
-  motionDetected = digitalRead(PIR_PIN);  // Odczyt stanu czujnika PIR
+  //motionDetected = digitalRead(PIR_PIN);  // Read the PIR sensor
+  motionDetected = 0; //  <- PIR broken now, we dont use
+  //Serial.println(motionDetected);
 
   LDRValue = analogRead(LDR_PIN);
+  
 
   if (millis() - lastTriggerSignalTime >= delayInterval) {
     //Serial.println("Millis ok");
 
-    if (LDRValue < lvlWhiteLight) {
+    if (LDRValue < lvlYellowLight) {
       if (motionDetected == HIGH) {
-        Serial.println("Number 55");
+        Serial.println("Number 56");
         Wire.beginTransmission(slave_LED);
-        Wire.write(55);   // White Light
+        Wire.write(56);   // White Light
         Wire.endTransmission();
         turnOffMotion = true;
         lastTriggerSignalTime = millis();
       }
-    } else if (LDRValue < lvlYellowLight) {
+    } else if (LDRValue < lvlWhiteLight) {
       if (motionDetected == HIGH) {
-        Serial.println("Number 56");
+        Serial.println("Number 55");
         Wire.beginTransmission(slave_LED);
-        Wire.write(56);   // Yellow Light
+        Wire.write(55);   // Yellow Light
         Wire.endTransmission();
         turnOffMotion = true;
         lastTriggerSignalTime = millis();

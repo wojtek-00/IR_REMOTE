@@ -18,7 +18,7 @@ Command commands[CommandsTable_size] = {
   {0x7, 0xF807EF00, 5},
   {0x8, 0xF708EF00, 6},
   {0x9, 0xF609EF00, 7},
-  {0xA, 0xF50AEF00, 0},
+  {0xA, 0xF50AEF00, 8},
   {0xB, 0xF40BEF00, 0},
   {0xC, 0xF30CEF00, 0},
   {0xD, 0xF20DEF00, 0},
@@ -42,9 +42,9 @@ int motionDetected;
 
 unsigned long lastTriggerSignalTime;
 
-const unsigned long delayInterval = 30000;     // 5 min
+const unsigned long delayInterval = 6000; //30000;     // 5 min
 
-const unsigned long delayOffInterval = 60000;  // 10 min
+const unsigned long delayOffInterval = 15000; //60000;  // 10 min
 //######################### PhotoRes COMMANDS #############################
 
 int LDRValue;
