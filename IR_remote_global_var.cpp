@@ -34,7 +34,11 @@ Command commands[CommandsTable_size] = {
   {0x17, 0xE817EF00, 21},
 };
 
-
+//########################### SWITCH #################################
+unsigned long pressStartTime = 1000;
+unsigned long pressDuration = 0;
+bool buttonPressed = false;
+bool switchFlag = false;
 
 //######################### PIR COMMANDS #############################
 

@@ -11,10 +11,12 @@ void setup() {
   pinMode(PIR_PIN, INPUT);
   pinMode(LDR_PIN, INPUT);
   lastTriggerSignalTime = 3000;
+  pinMode(SWITCH_PIN, INPUT_PULLUP);
 
 }
 
 void loop() {
+  int buttonState = digitalRead(SWITCH_PIN);
   int remoteCommand;
   remoteCommand = loop_fun(IR_RECEIVE_PIN);
   if (remoteCommand != 0) {
@@ -25,7 +27,31 @@ void loop() {
     Wire.write(remoteCommand);
     Wire.endTransmission();
   }
- 
+  //Serial.println(buttonState);
+
+  // Reading from the physical switch
+  if (buttonState == LOW && !buttonPressed) {
+    buttonPressed = true;
+    pressStartTime = millis();
+  }
+
+  if (buttonState == LOW && buttonPressed && (millis() - pressStartTime >= 1000)) {
+    //dimm function
+    Serial.println("dimm the LED");
+  } else if (buttonState == HIGH && buttonPressed){
+    buttonPressed = false;
+    pressDuration = millis() - pressStartTime;
+  
+      if (pressDuration < 500) {
+        Serial.println("Number 60");
+        Wire.beginTransmission(slave_LED);
+        Wire.write(60);   // White Light
+        Wire.endTransmission();
+  
+    }
+  }
+
+
   //motionDetected = digitalRead(PIR_PIN);  // Read the PIR sensor
   motionDetected = 0; //  <- PIR broken now, we dont use
   //Serial.println(motionDetected);

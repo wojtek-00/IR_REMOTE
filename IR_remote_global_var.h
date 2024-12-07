@@ -19,6 +19,13 @@ struct Command {
 
 extern Command commands[];
 
+//########################### SWITCH #################################
+#define SWITCH_PIN 8
+
+extern unsigned long pressStartTime;
+extern unsigned long  pressDuration;
+extern bool buttonPressed;
+extern bool switchFlag;
 
 //######################### PIR COMMANDS #############################
 #define PIR_PIN 2
