@@ -32,22 +32,36 @@ void loop() {
   // Reading from the physical switch
   if (buttonState == LOW && !buttonPressed) {
     buttonPressed = true;
-    pressStartTime = millis();
+    pressStartTime = millis(); 
   }
 
-  if (buttonState == LOW && buttonPressed && (millis() - pressStartTime >= 1000)) {
+
+  if (buttonState == LOW && buttonPressed && (millis() - pressStartTime >= 1000)) {   // if holding button longer than 1s -> dimm function
     //dimm function
+    pressCnt = -1;
     Serial.println("dimm the LED");
-  } else if (buttonState == HIGH && buttonPressed){
+  } else if (buttonState == HIGH && buttonPressed){   // pressed and released -> turn on / off
     buttonPressed = false;
-    pressDuration = millis() - pressStartTime;
-  
-      if (pressDuration < 500) {
-        Serial.println("Number 60");
-        Wire.beginTransmission(slave_LED);
-        Wire.write(60);   // White Light
-        Wire.endTransmission();
-  
+    allowSwitch = true;
+    pressCnt += 1;
+  }
+
+  if ((millis() - pressStartTime >= 500) && allowSwitch == true){ 
+    if (pressCnt == 2) {                          // if pressed 2 times -> turn off / on reading from all sensors
+      //Turn on off all the extra functions
+      Serial.println("Turn all");
+      pressCnt = 0;
+      allowSwitch = false;
+    } else if (pressCnt == 1) {                 // just turn on / off
+      Serial.println("Number 60");
+      Wire.beginTransmission(slave_LED);
+      Wire.write(60);   // White Light
+      Wire.endTransmission();
+      pressCnt = 0;      
+      allowSwitch = false;
+    } else {
+      allowSwitch = false;
+      pressCnt = 0;
     }
   }
 

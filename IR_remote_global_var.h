@@ -26,6 +26,8 @@ extern unsigned long pressStartTime;
 extern unsigned long  pressDuration;
 extern bool buttonPressed;
 extern bool switchFlag;
+extern bool allowSwitch;
+extern int pressCnt;
 
 //######################### PIR COMMANDS #############################
 #define PIR_PIN 2
