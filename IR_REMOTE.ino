@@ -32,7 +32,7 @@ void loop() {
 
   // ###################################### SWITCH ###########################################
   int buttonState = digitalRead(SWITCH_PIN);
-  
+
   // Reading from the physical switch
   if (buttonState == LOW && !buttonPressed) {
     buttonPressed = true;
@@ -42,9 +42,12 @@ void loop() {
 
   // if holding button longer than 1s -> dimm function
   if (buttonState == LOW && buttonPressed && (millis() - pressStartTime >= 1000)) {   
-    //dimm function
+    Serial.println("Number 61");
+    Wire.beginTransmission(slave_LED);
+    Wire.write(61);   
+    Wire.endTransmission();
     pressCnt = -1;
-    Serial.println("dimm the LED");
+    //Serial.println("dimm the LED");
   } else if (buttonState == HIGH && buttonPressed){   // pressed and released -> turn on / off
     buttonPressed = false;
     allowSwitch = true;
@@ -56,10 +59,18 @@ void loop() {
     if (pressCnt == 2) {                         
       if (readingSensor == false) {
         readingSensor = true;
-        Serial.println(" =Reading sensors On.");
+        Serial.println("Reading sensors On.");
+        //Serial.println("Number 60");
+        Wire.beginTransmission(slave_LED);
+        Wire.write(70);   
+        Wire.endTransmission();
       } else if (readingSensor == true) {
         readingSensor = false;
-        Serial.println(" =Reading sensors Off.");
+        Serial.println("Reading sensors Off.");
+        //Serial.println("Number 60");
+        Wire.beginTransmission(slave_LED);
+        Wire.write(71);   
+        Wire.endTransmission();   
       }
       pressCnt = 0;
       allowSwitch = false;
