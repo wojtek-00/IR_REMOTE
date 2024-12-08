@@ -27,6 +27,7 @@ extern unsigned long  pressDuration;
 extern bool buttonPressed;
 extern bool switchFlag;
 extern bool allowSwitch;
+extern bool readingSensor;
 extern int pressCnt;
 
 //######################### PIR COMMANDS #############################
