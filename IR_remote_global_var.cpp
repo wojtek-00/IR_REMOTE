@@ -40,7 +40,7 @@ unsigned long pressDuration = 0;
 bool buttonPressed = false;
 bool switchFlag = false;
 bool allowSwitch = false;
-bool readingSensor = false;
+bool readingSensor = true;
 int pressCnt = 0;
 
 //######################### PIR COMMANDS #############################

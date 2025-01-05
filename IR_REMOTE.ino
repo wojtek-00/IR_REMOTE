@@ -91,11 +91,12 @@ void loop() {
 // #################################### SENSORS: PIR & LDR ###########################################
   if (readingSensor == true) {
 
-    //motionDetected = digitalRead(PIR_PIN);  // Read the PIR sensor
-    motionDetected = 0; //  <- PIR broken now, we dont use
+    motionDetected = digitalRead(PIR_PIN);  // Read the PIR sensor
+    //motionDetected = 0; //  <- PIR broken now, we dont use
     //Serial.println(motionDetected);
 
     LDRValue = analogRead(LDR_PIN);
+    //Serial.println(LDRValue);
     
 
     if (millis() - lastTriggerSignalTime >= delayInterval) {
